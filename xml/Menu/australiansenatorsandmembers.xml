@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/aus_senators_members/settings</path>
+    <page_callback>CRM_Australiansenatorsandmembers_Form_ImportSettings</page_callback>
+    <title>Import Australian Senators and Members Settings</title>
+    <access_arguments>access CiviCRM</access_arguments>
+  </item>
+</menu>
