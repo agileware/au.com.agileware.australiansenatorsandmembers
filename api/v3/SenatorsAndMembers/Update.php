@@ -92,8 +92,9 @@ function _senators_and_members_member_upsert($properties) {
   $first_name = $properties['First Name'];
   $other_names = $properties['Other Names'];
   $last_name = $properties['Surname'];
-  $gender = $properties['Gender'];
+  $gender = ucfirst(strtolower($properties['Gender']));
   $title = $properties['Courtesy Title'];
+  $phone = $properties['Electorate Office Phone'];
 
   $address_properties = array_filter(array(
     'street_address'         => $properties['Electorate Office Postal Address'],
@@ -133,7 +134,16 @@ function _senators_and_members_member_upsert($properties) {
     // When there is only one result, the API response has a top-level 'id'
     // parameter corresponding to the one result Contact ID.
     $contact_id = $existing_result['id'];
-    // No further action needs to be taken.
+    $result = civicrm_api3('Contact', 'create', array(
+      'id' => $contact_id,
+      'gender_id' => $gender,
+      'formal_title' => $title,
+    ) + $unique_properties);
+    if (!empty($result['is_error'])) {
+      _senators_and_members_import_log("Could not update MP $first_name $other_names $last_name");
+    }
+    $contact_id = $result['id'];
+    _senators_and_members_import_log("Updated MP $contact_id: $first_name $other_names $last_name");
   }
   else {
     // Create a new MP contact.
@@ -151,6 +161,8 @@ function _senators_and_members_member_upsert($properties) {
   if (!empty($address_properties)) {
     _senators_and_members_address_upsert($contact_id, $address_properties);
   }
+
+  _senators_and_members_phone_upsert($contact_id, $phone);
   return $contact_id;
 }
 
@@ -160,6 +172,7 @@ function _senators_and_members_senator_upsert($properties) {
   $last_name = $properties['Surname'];
   $gender = $properties['Gender'];
   $title = $properties['Title'];
+  $phone = $properties['Electorate Telephone'];
 
   $address_properties = array_filter(array(
     'street_address'         => $properties['Electorate AddressLine1'],
@@ -200,7 +213,16 @@ function _senators_and_members_senator_upsert($properties) {
     // When there is only one result, the API response has a top-level 'id'
     // parameter corresponding to the one result Contact ID.
     $contact_id = $existing_result['id'];
-    // No further action needs to be taken.
+    $result = civicrm_api3('Contact', 'create', array(
+      'id' => $contact_id,
+      'gender_id' => $gender,
+      'formal_title' => $title,
+    ) + $unique_properties);
+    if (!empty($result['is_error'])) {
+      _senators_and_members_import_log("Could not update Senator $first_name $other_names $last_name");
+    }
+    $contact_id = $result['id'];
+    _senators_and_members_import_log("Updated Senator $contact_id: $first_name $other_names $last_name");
   }
   else {
     // Create a new Senator contact.
@@ -217,6 +239,7 @@ function _senators_and_members_senator_upsert($properties) {
   if (!empty($address_properties)) {
     _senators_and_members_address_upsert($contact_id, $address_properties);
   }
+  _senators_and_members_phone_upsert($contact_id, $phone);
   return $contact_id;
 }
 
@@ -308,6 +331,42 @@ function _senators_and_members_state_value($state_abbreviation) {
     'wa'  => 'Western Australia',
   );
   return $values[$state_abbreviation];
+}
+
+// Makes a phone number the primary phone number of a contact
+function _senators_and_members_phone_upsert($contact_id, $phone) {
+  $number_params = array('phone' => $phone);
+  $result = civicrm_api3('Phone', 'get', array(
+    'sequential' => 1,
+    'contact_id' => $contact_id,
+  ));
+  if (!empty($result['is_error'])) {
+    _senators_and_members_import_log("Could not retrieve phone details for contact id $contact_id", 'error');
+  }
+  else {
+    $api_params = array(
+      'contact_id'    => $contact_id,
+      'phone_type_id' => 'Phone',
+      'is_primary'    => 1,
+    );
+    $count = (int)$result['count'];
+    if ($count>0) {
+      $numbers = $result['values'];
+      foreach ($numbers as $number) {
+        if ($number['is_primary'] == '1') {
+          $number_id = $number['id'];
+          $number_params['id'] = $number_id;
+          break;
+        }
+      }
+      _senators_and_members_import_log("Updated Phone entity $number_id");
+    }
+    $params = $api_params + $number_params;
+    $number_create = civicrm_api3('Phone', 'create', $params);
+    if (!empty($number_create['is_error'])) {
+      _senators_and_members_import_log("Could not create phone for contact $contact_id");
+    }
+  }
 }
 
 // Used for logging and to exit if error is fatal.
