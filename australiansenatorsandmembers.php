@@ -93,6 +93,16 @@ function australiansenatorsandmembers_civicrm_managed(&$entities) {
       'parent_id' => 1,
     ),
   );
+  $entities[] = array(
+    'module' => 'au.com.agileware.australiansenatorsandmembers',
+    'name' => 'Senator Contact Type',
+    'entity' => 'ContactType',
+    'params' => array(
+      'version' => 3,
+      'name' => 'Senator',
+      'parent_id' => 1,
+    ),
+  );
 }
 
 /**
