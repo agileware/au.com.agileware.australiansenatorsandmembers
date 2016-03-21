@@ -3,7 +3,7 @@ au.com.agileware.australiansenatorsandmembers
 
 This CiviCRM extension provides an API action (SenatorsAndMembers update) that
 fetches 'All Senators by Party' and 'All Members by Party' CSVs (currently
-available at 'http://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files')
+available at http://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files)
 and imports them into CiviCRM, assigning each senator or member to a
 party-specific group. The Electorate office address and phone number are also
 imported. The source data currently contains no email addresses which is why
