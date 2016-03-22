@@ -94,9 +94,11 @@ function _senators_and_members_member_upsert($properties) {
   $last_name = $properties['Surname'];
   $gender = ucfirst(strtolower($properties['Gender']));
   $title = $properties['Courtesy Title'];
+  $parliamentary_title = $properties['Parliamentary Titles'];
   $phone = $properties['Electorate Office Phone'];
 
   $address_properties = array_filter(array(
+    'name'                   => $properties['Electorate'],
     'street_address'         => $properties['Electorate Office Postal Address'],
     'city'                   => $properties['Electorate Office Postal Suburb'],
     'state_province_id'      => _senators_and_members_state_value($properties['Electorate Office Postal State']),
@@ -138,6 +140,7 @@ function _senators_and_members_member_upsert($properties) {
       'id' => $contact_id,
       'gender_id' => $gender,
       'formal_title' => $title,
+      'job_title' => $parliamentary_title,
     ) + $unique_properties);
     if (!empty($result['is_error'])) {
       _senators_and_members_import_log("Could not update MP $first_name $other_names $last_name");
@@ -172,6 +175,7 @@ function _senators_and_members_senator_upsert($properties) {
   $last_name = $properties['Surname'];
   $gender = $properties['Gender'];
   $title = $properties['Title'];
+  $parliamentary_title = $properties['Parliamentary Titles'];
   $phone = $properties['Electorate Telephone'];
 
   $address_properties = array_filter(array(
@@ -217,6 +221,7 @@ function _senators_and_members_senator_upsert($properties) {
       'id' => $contact_id,
       'gender_id' => $gender,
       'formal_title' => $title,
+      'job_title' => $parliamentary_title,
     ) + $unique_properties);
     if (!empty($result['is_error'])) {
       _senators_and_members_import_log("Could not update Senator $first_name $other_names $last_name");
