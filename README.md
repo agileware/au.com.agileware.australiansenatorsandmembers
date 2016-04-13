@@ -23,9 +23,4 @@ there is no attempt to import these.
 4. Alternatively, you can run the API action from the CiviCRM API Explorer
    whenever a manual import needs to be done.
 5. Example command to execute and URLs
-
-```
-#!bash
-
-drush cvapi SenatorsAndMembers.update sequential=1 members_url="http://www.aph.gov.au/~/media/03%20Senators%20and%20Members/Address%20Labels%20and%20CSV%20files/SurnameRepsCSV.csv?la=en" senators_url="http://www.aph.gov.au/~/media/03%20Senators%20and%20Members/Address%20Labels%20and%20CSV%20files/allsenel.csv?la=en"
-```
+drush cvapi SenatorsAndMembers.update sequential=1 members_url="http://www.aph.gov.au/~/media/03%20Senators%20and%20Members/Address%20Labels%20and%20CSV%20files/SurnameRepsCSV.csv?la=en" senators_url="http://www.aph.gov.au/~/media/03%20Senators%20and%20Members/Address%20Labels%20and%20CSV%20files/allsenel.csv?la=en" 
