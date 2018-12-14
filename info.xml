@@ -2,23 +2,26 @@
 <extension key="au.com.agileware.australiansenatorsandmembers" type="module">
   <file>australiansenatorsandmembers</file>
   <name>Import Australian Senators and Members</name>
-  <description>This CiviCRM extension provides an API action (SenatorsAndMembers update) that fetches 'All Senators by Party' and 'All Members by Party' CSVs (currently available at http://www.aph.gov.au/Senators_and_Members/Guidelines_for_Contacting_Senators_and_Members/Address_labels_and_CSV_files) and imports them into CiviCRM, assigning each senator or member to a party-specific group. The Electorate office address and phone number are also imported. The source data currently contains no email addresses which is why there is no attempt to import these.</description>
+  <description>CiviCRM extension to populate and keep up to date the names and contact details for each currently elected Senator and Member (MP) in the Australian Parliament.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>Agileware Support</author>
     <email>support@agileware.com.au</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">https://bitbucket.org/agileware/au.com.agileware.australiansenatorsandmembers</url>
-    <url desc="Documentation">https://bitbucket.org/agileware/au.com.agileware.australiansenatorsandmembers</url>
-    <url desc="Support">https://bitbucket.org/agileware/au.com.agileware.australiansenatorsandmembers</url>
+    <url desc="Main Extension Page">https://github.com/agileware/au.com.agileware.australiansenatorsandmembers</url>
+    <url desc="Documentation">https://github.com/agileware/au.com.agileware.australiansenatorsandmembers</url>
+    <url desc="Support">https://github.com/agileware/au.com.agileware.australiansenatorsandmembers</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2016-03-10</releaseDate>
+  <releaseDate>2018-12-15</releaseDate>
   <version>1.0</version>
-  <develStage>alpha</develStage>
+  <develStage>stable</develStage>
   <compatibility>
     <ver>4.6</ver>
+    <ver>4.7</ver>
+    <ver>4.8</ver>
+    <ver>5.8</ver>
   </compatibility>
   <comments></comments>
   <civix>
