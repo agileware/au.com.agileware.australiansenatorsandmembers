@@ -42,4 +42,4 @@ This CiviCRM extension was developed by the team at [Agileware](https://agilewar
 Support your Australian [CiviCRM](https://civicrm.org) developers, [contact Agileware](https://agileware.com.au/contact) today!
 
 
-![Agileware](agileware-logo.png)  
+![Agileware](logo/agileware-logo.png)  
