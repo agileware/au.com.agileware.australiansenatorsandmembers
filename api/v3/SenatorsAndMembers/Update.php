@@ -93,16 +93,15 @@ function _senators_and_members_member_upsert($properties) {
   $other_names = $properties['Other Names'];
   $last_name = $properties['Surname'];
   $gender = ucfirst(strtolower($properties['Gender']));
-  $title = $properties['Courtesy Title'];
-  $parliamentary_title = $properties['Parliamentary Titles'];
-  $phone = $properties['Electorate Office Phone'];
+  $title = $properties['Title'];
+  $parliamentary_title = $properties['Parliamentary Title'];
+  $phone = $properties['ElectorateTelephone'];
 
   $address_properties = array_filter(array(
-    'name'                   => $properties['Electorate'],
-    'street_address'         => $properties['Electorate Office Postal Address'],
-    'city'                   => $properties['Electorate Office Postal Suburb'],
-    'state_province_id'      => _senators_and_members_state_value($properties['Electorate Office Postal State']),
-    'postal_code'            => $properties['Electorate Office Postal PostCode'],
+    'street_address'         => $properties['LabelAddress'],
+    'city'                   => $properties['LabelSuburb'],
+    'state_province_id'      => _senators_and_members_state_value($properties['LabelState']),
+    'postal_code'            => $properties['LabelPostcode'],
     'country'                => 'Australia',
   ));
 
@@ -175,15 +174,14 @@ function _senators_and_members_senator_upsert($properties) {
   $last_name = $properties['Surname'];
   $gender = $properties['Gender'];
   $title = $properties['Title'];
-  $parliamentary_title = $properties['Parliamentary Titles'];
-  $phone = $properties['Electorate Telephone'];
+  $parliamentary_title = $properties['Parliamentary Title'];
+  $phone = $properties['ElectorateTelephone'];
 
   $address_properties = array_filter(array(
-    'street_address'         => $properties['Electorate AddressLine1'],
-    'supplemental_address_1' => $properties['Electorate AddressLine2'],
-    'city'                   => $properties['Electorate Suburb'],
-    'state_province_id'      => _senators_and_members_state_value($properties['Electorate State']),
-    'postal_code'            => $properties['Electorate Postcode'],
+    'street_address'         => $properties['LabelAddress'],
+    'city'                   => $properties['LabelSuburb'],
+    'state_province_id'      => _senators_and_members_state_value($properties['LabelState']),
+    'postal_code'            => $properties['LabelPostcode'],
     'country'                => 'Australia',
   ));
 
