@@ -1,5 +1,5 @@
 au.com.agileware.australiansenatorsandmembers
-=============================================
+------
 
 CiviCRM extension to populate and keep up to date the names and contact details for each currently elected Senator and Member (MP) in the [Australian Parliament](https://en.wikipedia.org/wiki/Parliament_of_Australia).
 
@@ -7,7 +7,8 @@ This CiviCRM extension provides an API action (SenatorsAndMembers update) that f
 The CSV files are imported into CiviCRM, assigning each Senator or Member (MP) to a party-specific group in CiviCRM. The Electorate office address and phone number are also imported.
 The source data currently contains no email addresses which is why there is no attempt to import these.
 
-# Configuration
+Configuration
+------
 
 1. Copy this extension into your extensions directory and enable in CiviCRM (a cache clear may be required).
 2. Two contact types will be created: Senator and MP, which we use for our import process to avoid overwriting existing contacts with the same identifying fields.
@@ -23,3 +24,22 @@ Using WordPress and wp:
 ```
 wp civicrm api SenatorsAndMembers.update sequential=1 members_url="https://www.aph.gov.au/~/media/03%20Senators%20and%20Members/Address%20Labels%20and%20CSV%20files/SurnameRepsCSV.csv?la=en" senators_url="https://www.aph.gov.au/~/media/03%20Senators%20and%20Members/Address%20Labels%20and%20CSV%20files/allsenel.csv?la=en"
 ```
+
+About the Authors
+------
+
+This CiviCRM extension was developed by the team at [Agileware](https://agileware.com.au).
+
+[Agileware](https://agileware.com.au) provide a range of CiviCRM services including:
+
+  * CiviCRM migration
+  * CiviCRM integration
+  * CiviCRM extension development
+  * CiviCRM support
+  * CiviCRM hosting
+  * CiviCRM remote training services
+
+Support your Australian [CiviCRM](https://civicrm.org) developers, [contact Agileware](https://agileware.com.au/contact) today!
+
+
+![Agileware](agileware-logo.png)  
