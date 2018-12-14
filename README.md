@@ -7,6 +7,13 @@ This CiviCRM extension provides an API action (SenatorsAndMembers update) that f
 The CSV files are imported into CiviCRM, assigning each Senator or Member (MP) to a party-specific group in CiviCRM. The Electorate office address and phone number are also imported.
 The source data currently contains no email addresses which is why there is no attempt to import these.
 
+Installation
+------
+
+1. Download the [latest version of this extension](https://github.com/agileware/au.com.agileware.australiansenatorsandmembers/archive/master.zip)
+1. Unzip in the CiviCRM extension directory, as defined in 'System Settings / Directories'.
+1. Go to "Administer / System Settings / Extensions" and enable the "Import Australian Senators and Members (au.com.agileware.australiansenatorsandmembers)" extension.
+
 Configuration
 ------
 
